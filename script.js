@@ -5,38 +5,62 @@ var lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"
 var num = ["0","1","2","3","4","5","6","7","8","9"]
 var special = ["`","~","!","@","#","$","%","^","&","*","(",")","=","+","?"]
 
-
+//Created the function
 function generatePassword(){
-var userCharacterLenght = prompt("How long do you want your password to be between 8 and 28?")
+
+  //Initial prompt
+var userCharacterLenght = prompt("How long do you want your password to be?(between 8 and 128)")
+
+//restrict the range of characters the user can input
+if (userCharacterLenght < 8 || userCharacterLenght >128) {
+  alert("Out of Range!");
+
+  generatePassword();
+}
+
+
+//options for User to confirm or deni
 var upper = confirm("Would you like to use upper case letters?")
 var lower = confirm("Would you like to use lower case letters?")
 var number = confirm("Would you like to use numbers?")
 var spec = confirm("Would you like to use special characters?")
+
+//Empty arrays for user input and results
 var userAnswer =[]
+var result = []
+
+//link User specs to generator
 if (upper){
   userAnswer=userAnswer.concat(upperCase)
-  console.log(userAnswer)
-
 }
+
 if (lower){
   userAnswer=userAnswer.concat(lowerCase)
-  console.log(userAnswer)
-  
 }
+
 if (number){
   userAnswer=userAnswer.concat(num)
-  console.log(userAnswer)
-  
 }
+
 if (spec){
-  userAnswer=userAnswer.concat(special)
-  console.log(userAnswer)
-  
+  userAnswer=userAnswer.concat(special)  
 }
-for (i=0;i < userCharacterLenght;i++){
+
+//Created a Loop
+for (i=0; i < userCharacterLenght; i++){
   console.log ("")
- var randomnumb = Math.floor(Math.random()*userAnswer.length)
+
+ //make random number from the users desired length
+var randomnumber = Math.floor(Math.random()*userAnswer.length)
+//
+var randomCharacter = userAnswer [randomnumber]
+
+ //show results on page
+result.push(randomCharacter);
 }
+return result.join("")
+ 
+
 }
 
 
